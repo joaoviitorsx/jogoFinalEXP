@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3 uid="uid://bwy55mxj41n6q"]
+
+[ext_resource type="Texture2D" uid="uid://crhrp6i5oi4xt" path="res://Assets/sprites/personagem/shadow.ase" id="1_p27yv"]
+[ext_resource type="Texture2D" uid="uid://bee78mixfbrl0" path="res://Assets/sprites/npc/village_head.png" id="1_wesxv"]
+[ext_resource type="Script" path="res://Dialogos/dialogoPROF.gd" id="3_l1gud"]
+[ext_resource type="FontFile" uid="uid://cg51hcvgwysv3" path="res://Assets/fonts/EquipmentPro.ttf" id="4_jmmqb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6vwp"]
+atlas = ExtResource("1_wesxv")
+region = Rect2(0, 0, 113, 134)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5p8c"]
+atlas = ExtResource("1_wesxv")
+region = Rect2(113, 0, 113, 134)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xmsqi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6vwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5p8c")
+}],
+"loop": true,
+"name": &"prof",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxs1f"]
+size = Vector2(65, 124.75)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_muwnw"]
+radius = 150.003
+
+[node name="Prof" type="StaticBody2D"]
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xmsqi")
+animation = &"prof"
+frame_progress = 0.0973413
+
+[node name="shadow" type="Sprite2D" parent="sprite"]
+modulate = Color(0, 0, 0, 0.258824)
+position = Vector2(-8, 62)
+scale = Vector2(4.37766, 4.47071)
+texture = ExtResource("1_p27yv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-11, 4)
+shape = SubResource("RectangleShape2D_gxs1f")
+
+[node name="Dialogo" type="Area2D" parent="." node_paths=PackedStringArray("_hud")]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_l1gud")
+_hud = NodePath("Hud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialogo"]
+position = Vector2(-9, 2)
+shape = SubResource("CircleShape2D_muwnw")
+
+[node name="Hud" type="CanvasLayer" parent="Dialogo"]
+
+[node name="Label" type="Label" parent="Dialogo"]
+visible = false
+z_index = 20
+offset_left = -236.0
+offset_top = -131.0
+offset_right = 212.0
+offset_bottom = -66.0
+theme_override_colors/font_color = Color(0.76, 0.76, 0.76, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jmmqb")
+theme_override_font_sizes/font_size = 30
+text = "   Pressione [E] 
+para falar com Professor"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Dialogo" to="Dialogo" method="_on_body_entered"]
+[connection signal="body_exited" from="Dialogo" to="Dialogo" method="_on_body_exited"]

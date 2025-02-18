@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://bwvj3pacrifw6"]
+
+[ext_resource type="Texture2D" uid="uid://b4oowe8nucin8" path="res://Assets/sprites/npc/personagem 2.png" id="1_cciyy"]
+[ext_resource type="Script" path="res://Dialogos/dialogoLETICIA.gd" id="2_bj23q"]
+[ext_resource type="FontFile" uid="uid://cg51hcvgwysv3" path="res://Assets/fonts/EquipmentPro.ttf" id="3_4jqh6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u8ot"]
+atlas = ExtResource("1_cciyy")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oheoc"]
+atlas = ExtResource("1_cciyy")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yjqx6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u8ot")
+}],
+"loop": true,
+"name": &"back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oheoc")
+}],
+"loop": true,
+"name": &"front",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ph2m8"]
+size = Vector2(39, 52)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tqxdw"]
+radius = 44.1022
+
+[node name="Leticia - Personagem" type="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yjqx6")
+animation = &"front"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 4)
+shape = SubResource("RectangleShape2D_ph2m8")
+
+[node name="Dialogo" type="Area2D" parent="." node_paths=PackedStringArray("_hud")]
+script = ExtResource("2_bj23q")
+_hud = NodePath("Hud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialogo"]
+shape = SubResource("CircleShape2D_tqxdw")
+
+[node name="Hud" type="CanvasLayer" parent="Dialogo"]
+
+[node name="Label" type="Label" parent="Dialogo"]
+visible = false
+offset_left = -68.0
+offset_top = -63.0
+offset_right = 70.0
+offset_bottom = -28.0
+theme_override_fonts/font = ExtResource("3_4jqh6")
+text = "     Pressione [E] 
+para falar com Leticia"
+
+[connection signal="body_entered" from="Dialogo" to="Dialogo" method="_on_body_entered"]
+[connection signal="body_exited" from="Dialogo" to="Dialogo" method="_on_body_exited"]

@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxtxd0fluq7y"]
+
+[ext_resource type="Script" path="res://Dialogos/dialog_screen.gd" id="1_lcd2r"]
+[ext_resource type="Texture2D" uid="uid://lwytd6beidrt" path="res://Assets/sprites/npc/caraleticia2.png" id="2_d2sww"]
+[ext_resource type="FontFile" uid="uid://cg51hcvgwysv3" path="res://Assets/fonts/EquipmentPro.ttf" id="3_q4cqx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ffh8u"]
+line_spacing = 0.0
+font = ExtResource("3_q4cqx")
+shadow_color = Color(0, 0, 0, 0.6)
+
+[node name="DialogScreen" type="Control" node_paths=PackedStringArray("_name", "_dialog", "_faceset")]
+custom_minimum_size = Vector2(320, 80)
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -196.0
+offset_right = 40.0
+offset_bottom = -116.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2.06448, 2.19409)
+script = ExtResource("1_lcd2r")
+_name = NodePath("Background/HContainer/VContainer/Name")
+_dialog = NodePath("Background/HContainer/VContainer/Dialog")
+_faceset = NodePath("Background/HContainer/Border/FaceSet")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="HContainer" type="HBoxContainer" parent="Background"]
+custom_minimum_size = Vector2(312, 72)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = -36.0
+offset_right = 156.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Border" type="ColorRect" parent="Background/HContainer"]
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+
+[node name="FaceSet" type="TextureRect" parent="Background/HContainer/Border"]
+custom_minimum_size = Vector2(70, 72)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.1562
+offset_top = -35.8981
+offset_right = 34.8438
+offset_bottom = 36.1019
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_d2sww")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VContainer" type="VBoxContainer" parent="Background/HContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="Background/HContainer/VContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_q4cqx")
+text = "Ana"
+label_settings = SubResource("LabelSettings_ffh8u")
+vertical_alignment = 1
+
+[node name="Dialog" type="RichTextLabel" parent="Background/HContainer/VContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/table_v_separation = 1
+theme_override_constants/table_h_separation = 1
+theme_override_fonts/normal_font = ExtResource("3_q4cqx")
+text = "quero comer bosta"

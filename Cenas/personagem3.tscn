@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3qqfkguqy535"]
+
+[ext_resource type="Texture2D" uid="uid://bfjmkerq5ekom" path="res://Assets/sprites/npc/chinese_woman.png" id="1_p0tmx"]
+[ext_resource type="Script" path="res://Dialogos/dialogoSOFIA1.gd" id="2_vx5re"]
+[ext_resource type="FontFile" uid="uid://cg51hcvgwysv3" path="res://Assets/fonts/EquipmentPro.ttf" id="3_htev3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqd3e"]
+atlas = ExtResource("1_p0tmx")
+region = Rect2(0, 0, 98, 127)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dsg18"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqd3e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7vcg"]
+size = Vector2(17, 24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xsv8f"]
+radius = 100.08
+
+[node name="Sofia" type="StaticBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_dsg18")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.807565
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_n7vcg")
+
+[node name="Dialogo" type="Area2D" parent="." node_paths=PackedStringArray("_hud")]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_vx5re")
+_hud = NodePath("Hud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialogo"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_xsv8f")
+
+[node name="Hud" type="CanvasLayer" parent="Dialogo"]
+
+[node name="Label" type="Label" parent="Dialogo"]
+visible = false
+offset_left = -144.0
+offset_top = -136.0
+offset_right = 136.0
+offset_bottom = -61.0
+theme_override_fonts/font = ExtResource("3_htev3")
+theme_override_font_sizes/font_size = 35
+text = "     Pressione [E] 
+para falar com Sofia"
+
+[connection signal="body_entered" from="Dialogo" to="Dialogo" method="_on_body_entered"]
+[connection signal="body_exited" from="Dialogo" to="Dialogo" method="_on_body_exited"]
+[connection signal="script_changed" from="Dialogo" to="Dialogo" method="_on_script_changed"]

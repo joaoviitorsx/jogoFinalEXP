@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6s0yvric2bwt"]
+
+[ext_resource type="Script" path="res://Scripts/bolinhaPAPEL.gd" id="1_gqkwn"]
+[ext_resource type="Texture2D" uid="uid://d0qu053yn0xj0" path="res://Assets/objetos/bolinhadepapel2.ase" id="2_vsukm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5hx7i"]
+
+[node name="Bolinha1" type="Area2D"]
+script = ExtResource("1_gqkwn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_vsukm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_5hx7i")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Pressione [E] para pegar bolinha"
+
+[connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_area_2d_body_exited"]

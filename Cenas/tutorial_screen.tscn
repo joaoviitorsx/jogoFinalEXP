@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqou3i23yndfa"]
+
+[ext_resource type="Script" path="res://Scripts/tutorial_screen.gd" id="1_cdo7m"]
+[ext_resource type="Texture2D" uid="uid://cjum3rcm7myx1" path="res://Assets/sprites/TutorialScreen.ase1.png" id="1_duhpy"]
+[ext_resource type="Texture2D" uid="uid://brw4jq0iy3hdh" path="res://Assets/sprites/TutorialScreen.ase2.png" id="2_7q2lo"]
+[ext_resource type="Texture2D" uid="uid://bn30p0roxi6hg" path="res://Assets/sprites/TutorialScreen.ase3.png" id="3_gf2x8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y6pos"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_duhpy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7q2lo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gf2x8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="TutorialScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cdo7m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(639, 359)
+sprite_frames = SubResource("SpriteFrames_y6pos")
+frame_progress = 0.834123

@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://vo3ra6jqinyx"]
+
+[ext_resource type="Texture2D" uid="uid://dty4i87f37gaa" path="res://Assets/objetos/copo.ase" id="1_0veqr"]
+[ext_resource type="Script" path="res://Scripts/copo.gd" id="1_suv5k"]
+[ext_resource type="FontFile" uid="uid://cg51hcvgwysv3" path="res://Assets/fonts/EquipmentPro.ttf" id="3_6wnn8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kt1t6"]
+radius = 50.01
+
+[node name="Copo" type="Node2D"]
+script = ExtResource("1_suv5k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0veqr")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_kt1t6")
+
+[node name="Label" type="Label" parent="Area2D"]
+visible = false
+z_index = 20
+offset_left = -156.0
+offset_top = -45.0
+offset_right = 419.0
+offset_bottom = 6.0
+theme_override_colors/font_color = Color(0.76, 0.76, 0.76, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6wnn8")
+theme_override_font_sizes/font_size = 30
+text = "Pressione [E] para pegar copo"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

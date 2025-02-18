@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6rlrd1fqn4dq"]
+
+[ext_resource type="Script" path="res://Scripts/pergunta_3.gd" id="1_7qaks"]
+[ext_resource type="Texture2D" uid="uid://chkyn3414fw6" path="res://pergunta3.png" id="1_30dng"]
+[ext_resource type="Texture2D" uid="uid://dt5g5ufqp87at" path="res://ERRADO.png" id="2_l72rn"]
+[ext_resource type="Texture2D" uid="uid://cy5afr0mdco7c" path="res://CERTO.png" id="3_4lskj"]
+
+[node name="Pergunta3" type="Area2D"]
+script = ExtResource("1_7qaks")
+
+[node name="Mesa" type="Sprite2D" parent="."]
+position = Vector2(695, 373)
+scale = Vector2(0.957709, 0.916995)
+texture = ExtResource("1_30dng")
+
+[node name="Certo" type="Sprite2D" parent="Mesa"]
+visible = false
+position = Vector2(-61.8519, 21.749)
+scale = Vector2(1.84082, 2.21251)
+texture = ExtResource("3_4lskj")
+
+[node name="Errado" type="Sprite2D" parent="Mesa"]
+visible = false
+position = Vector2(-82.4885, 35.9871)
+scale = Vector2(1.65273, 1.86637)
+texture = ExtResource("2_l72rn")
+
+[node name="Button" type="Button" parent="Mesa"]
+offset_left = -374.853
+offset_top = -4.36208
+offset_right = -264.853
+offset_bottom = 39.6379
+flat = true
+
+[node name="Button2" type="Button" parent="Mesa"]
+offset_left = -371.0
+offset_top = -57.0
+offset_right = -279.0
+offset_bottom = -20.0
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Button3" type="Button" parent="Mesa"]
+offset_left = -372.765
+offset_top = -118.867
+offset_right = -262.765
+offset_bottom = -74.8665
+flat = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="Mesa/Button" to="." method="_on_button1_pressed"]
+[connection signal="pressed" from="Mesa/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Mesa/Button3" to="." method="_on_button_3_pressed"]

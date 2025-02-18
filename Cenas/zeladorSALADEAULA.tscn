@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://bbrol02mxrgt8"]
+
+[ext_resource type="Script" path="res://Scripts/zelador_saladeaula.gd" id="1_1mqj2"]
+[ext_resource type="Texture2D" uid="uid://bwlavm3y1a1e5" path="res://Assets/sprites/npc/profH.ase" id="1_tld5r"]
+[ext_resource type="Texture2D" uid="uid://dtff2kn3e46ns" path="res://Assets/sprites/npc/profH2.ase" id="2_kmkbi"]
+[ext_resource type="Texture2D" uid="uid://crhrp6i5oi4xt" path="res://Assets/sprites/personagem/shadow.ase" id="3_pvcfy"]
+[ext_resource type="FontFile" uid="uid://cg51hcvgwysv3" path="res://Assets/fonts/EquipmentPro.ttf" id="5_k1xil"]
+[ext_resource type="Script" path="res://Dialogos/dialogoZELADORSALA.gd" id="5_kprue"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_63jvq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tld5r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kmkbi")
+}],
+"loop": true,
+"name": &"zelador",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ptcx"]
+size = Vector2(63, 123.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5j5x6"]
+radius = 149.084
+
+[node name="Zelador" type="StaticBody2D"]
+script = ExtResource("1_1mqj2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_63jvq")
+animation = &"zelador"
+frame_progress = 0.46489
+
+[node name="shadow" type="Sprite2D" parent="AnimatedSprite2D"]
+modulate = Color(1, 1, 1, 0.258824)
+position = Vector2(3, 64)
+scale = Vector2(4.378, 2.843)
+texture = ExtResource("3_pvcfy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, -0.75)
+shape = SubResource("RectangleShape2D_3ptcx")
+
+[node name="Dialogo" type="Area2D" parent="." node_paths=PackedStringArray("_hud")]
+script = ExtResource("5_kprue")
+_hud = NodePath("HUD")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialogo"]
+shape = SubResource("CircleShape2D_5j5x6")
+
+[node name="HUD" type="CanvasLayer" parent="Dialogo"]
+
+[node name="Label" type="Label" parent="Dialogo"]
+visible = false
+z_index = 20
+texture_filter = 1
+offset_left = -124.0
+offset_top = -131.0
+offset_right = 576.0
+offset_bottom = -36.0
+theme_override_colors/font_color = Color(0.761719, 0.761719, 0.761719, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_k1xil")
+theme_override_font_sizes/font_size = 30
+text = "     Pressione [E] 
+para falar com Zelador"
+
+[connection signal="body_entered" from="Dialogo" to="Dialogo" method="_on_body_entered"]
+[connection signal="body_exited" from="Dialogo" to="Dialogo" method="_on_body_exited"]
