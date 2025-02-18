@@ -1,5 +1,6 @@
-# Jogo Socioemocional para Escolhinha Yolanda Queiroz
+## Misterio Da Sala Secreta
 
+# Jogo Socioemocional para Escolhinha Yolanda Queiroz
 Este projeto foi desenvolvido como parte da disciplina **Experimentação de Protótipos** da Unifor. O objetivo do jogo é auxiliar as crianças da Escolhinha Yolanda Queiroz 
 através de uma abordagem socioemocional, oferecendo uma experiência lúdica e educativa que estimula o desenvolvimento das habilidades socioemocionais.
 
